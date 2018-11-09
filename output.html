@@ -1,0 +1,246 @@
+<html>
+    <style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+     
+    <body>
+     <!DOCTYPE html>
+    <html>
+    <body>
+    <h2>R1 Data</h2><h2>CDP Data</h2>  <table>      <table id="customers">
+        <tr><th>select local_host</th>
+<th>Remote Device</th>
+<th>platform</th>
+<th>capabilities</th>
+<th>localInterface</th>
+<th>interface</th>
+<th>version</th>
+</tr>
+<tr>
+<td>R1</td>
+<td>R2</td>
+<td>Cisco 3745</td>
+<td>Router Switch IGMP</td>
+<td>FastEthernet0/1</td>
+<td>FastEthernet0/1</td>
+<td>Cisco IOS Software, 3700 Software (C3745-ADVENTERPRISEK9-M), Version 12.4(25d), RELEASE SOFTWARE (fc1)</td>
+</tr>
+</table><h2>Inventory Data</h2>  <table>      <table id="customers">
+        <tr><th>local_host</th>
+<th>descr</th>
+<th>name</th>
+<th>pid</th>
+<th>sn</th>
+</tr>
+<tr>
+<td>R1</td>
+<td>3745 chassis</td>
+<td>3745 chassis</td>
+<td></td>
+<td>FTX0945W0MY</td>
+</tr>
+<td>R1</td>
+<td>c3745 Motherboard with Fast Ethernet</td>
+<td>c3745 Motherboard with Fast Ethernet</td>
+<td>C3745-2FE</td>
+<td>XXXXXXXXXXX</td>
+</tr>
+</table><h2>IP Interface Brief</h2>  <table>      <table id="customers">
+        <tr><th>local_host</th>
+<th>intf</th>
+<th>ipaddr</th>
+</tr>
+<tr>
+<td>R1</td>
+<td>FastEthernet0/0</td>
+<td>192.168.0.128</td>
+</tr>
+<td>R1</td>
+<td>FastEthernet0/1</td>
+<td>10.0.12.1</td>
+</tr>
+<td>R1</td>
+<td>Loopback0</td>
+<td>10.0.0.1</td>
+</tr>
+</table><h2>OSPF Neighborships</h2>  <table>      <table id="customers">
+        <tr><th>local_host</th>
+<th>address</th>
+<th>interface</th>
+<th>neighbor_id</th>
+<th>state</th>
+</tr>
+<tr>
+<td>R1</td>
+<td>10.0.12.2</td>
+<td>FastEthernet0/1</td>
+<td>10.0.0.2</td>
+<td>FULL/DR</td>
+</tr>
+</table><h2>Show Version Data</h2>  <table>      <table id="customers">
+        <tr><th>local_host</th>
+<th>version</th>
+<th>uptime</th>
+<th>running_image</th>
+<th>config_register</th>
+</tr>
+<tr>
+<td>R1</td>
+<td>12.4(25d)</td>
+<td>1 week, 2 days, 26 minutes</td>
+<td>//255.255.255.255/unknown</td>
+<td>0x2102</td>
+</tr>
+</table><h2>Subnets Data</h2>  <table>      <table id="customers">
+        <tr><th>local_host</th>
+<th>nexthop_if</th>
+<th>network</th>
+<th>mask</th>
+</tr>
+<tr>
+<td>R1</td>
+<td>Loopback0</td>
+<td>10.0.0.1</td>
+<td>32</td>
+</tr>
+<td>R1</td>
+<td>FastEthernet0/1</td>
+<td>10.0.12.0</td>
+<td>24</td>
+</tr>
+<td>R1</td>
+<td>FastEthernet0/0</td>
+<td>192.168.0.0</td>
+<td>24</td>
+</tr>
+</table><h2>Running Config</h2><pre>Building configuration...
+
+Current configuration : 1245 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+no ip domain lookup
+ip auth-proxy max-nodata-conns 3
+ip admission max-nodata-conns 3
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username cisco privilege 15 secret 5 $1$0O1W$lPvrvKWqt6JPEa4QOAuy21
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.0.0.1 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.0.128 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 10.0.12.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+router ospf 10
+ log-adjacency-changes
+ network 10.0.0.0 0.255.255.255 area 0
+ default-information originate
+!
+ip forward-protocol nd
+ip route 0.0.0.0 0.0.0.0 192.168.0.1
+ip route 0.0.0.0 0.0.0.0 dhcp
+!
+!
+no ip http server
+no ip http secure-server
+!
+no cdp log mismatch duplex
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login local
+line vty 5 16
+ login local
+!
+!
+end
+</pre></table></body>
+</html>
