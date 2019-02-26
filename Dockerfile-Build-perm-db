@@ -1,0 +1,15 @@
+FROM python:latest
+
+EXPOSE 22 3306 33060
+
+#VOLUME /network_crawler
+
+RUN apt-get install git
+RUN pip install mysqlclient
+WORKDIR /network_crawler/network_to_db
+ENV NET_TEXTFSM /network_crawler/network_to_db/ntc-templates-master/templates
+
+RUN pip install netmiko
+RUN pip install ciscoconfparse
+
+ENTRYPOINT ["python3", "build_perm_db.py"]

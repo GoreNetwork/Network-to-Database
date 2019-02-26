@@ -12,6 +12,9 @@ import time
 def get_time():
 	return time.ctime()
 
+def get_ip_from_hostname(hostname):
+	return socket.gethostbyname(hostname)
+
 def ip_in_subnet_list(ip, subnets_list):
     address = ipaddress.ip_address(ip)
     for subnet in subnets_list:

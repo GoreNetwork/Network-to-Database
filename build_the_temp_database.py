@@ -76,7 +76,15 @@ def build_to_do_database(table_dics):
 	"CREATE TABLE done(ip varchar(39) unique);",
 	"CREATE TABLE issues(ip varchar(39) unique);",
 	]
-	conn = MySQLdb.connect(db_location,db_user, db_password,temp_db)
+	print(db_location,db_user, db_password,temp_db)
+	print(db_location,db_user, db_password,temp_db)
+
+	print(db_location,db_user, db_password,temp_db)
+
+	print(db_location,db_user, db_password,temp_db)
+	conn = MySQLdb.connect(host=db_location,port = 3306, user= db_user, passwd=db_password,db=temp_db)
+
+
 	cur = conn.cursor()
 	for build_table_command in build_table_commands:
 		cur.execute(build_table_command)

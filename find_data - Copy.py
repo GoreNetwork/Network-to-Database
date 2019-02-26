@@ -1,6 +1,7 @@
+from orionsdk import SwisClient
 from getpass import getpass
 from pprint import pprint
-#import requests
+import requests
 import MySQLdb
 import os
 import datetime
@@ -8,16 +9,19 @@ import time
 import calendar
 import smtplib
 from os.path import basename
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.utils import COMMASPACE, formatdate
+#from common_functions import *
+import smtplib
+import email.message
 import os
-from common_functions import *
-from db_work import *
 
-file_name = "file_for_reports.txt"
-hostnames = read_doc_list (file_name)
-
+hostname = 'R1'
 username = 'root'
 password = "password"
-location = db_location
+location = "localhost"
 database = 'network_data_db'
 
 def to_doc_w(file_name, varable):
@@ -212,47 +216,47 @@ show_ver_headers = ["local_host","version","uptime","running_image","config_regi
 
 subnet_data_headers = ["local_host","nexthop_if","network","mask"]
 
-for hostname in hostnames:
-	hostname = hostname.rstrip('\n')
-	cdp_data = pull_cdp_data(hostname)
-	inv_data = pull_inventory_data(hostname)
-	int_brief_data = pull_int_brief_data(hostname)
-	ospf_data = pull_osfp_data(hostname)
-	ver_data = pull_show_ver_data(hostname)
-	subnet_data = pull_subnet_data(hostname)
-	running_config = pull_raw_data_data(hostname)[0][0]
+
+
+cdp_data = pull_cdp_data(hostname)
+inv_data = pull_inventory_data(hostname)
+int_brief_data = pull_int_brief_data(hostname)
+ospf_data = pull_osfp_data(hostname)
+ver_data = pull_show_ver_data(hostname)
+subnet_data = pull_subnet_data(hostname)
+running_config = pull_raw_data_data(hostname)[0][0]
 
 
 
-	body = html_build_start_body()
-	body = body + "<h2>{} Data</h2>".format (hostname)
-	body = body + "<h2>CDP Data</h2>"
-	body = html_build_table(body,cdp_headers,cdp_data)
-	body = body + "<h2>Inventory Data</h2>"
-	body = html_build_table(body,inv_headers,inv_data)
-	body = body + "<h2>IP Interface Brief</h2>"
-	body = html_build_table(body,ip_int_brief_headers,int_brief_data)
-	body = body + "<h2>OSPF Neighborships</h2>"
-	body = html_build_table(body,ospf_headers,ospf_data)
-	body = body + "<h2>Show Version Data</h2>"
-	body = html_build_table(body,show_ver_headers,ver_data)
-	body = body + "<h2>Subnets Data</h2>"
-	body = html_build_table(body,subnet_data_headers,subnet_data)
-	body = body + "<h2>Running Config</h2>"
-	body = body +'<pre>'
-	body = body + running_config
-	body = body +'</pre>'
-	
-	
-	
-	
-	
-	
-	
-	body = body + """</table></body>
-	</html>
-	"""
-	output_file = hostname+" report.html"
-	
-	to_doc_w(output_file,body)
+body = html_build_start_body()
+body = body + "<h2>{} Data</h2>".format (hostname)
+body = body + "<h2>CDP Data</h2>"
+body = html_build_table(body,cdp_headers,cdp_data)
+body = body + "<h2>Inventory Data</h2>"
+body = html_build_table(body,inv_headers,inv_data)
+body = body + "<h2>IP Interface Brief</h2>"
+body = html_build_table(body,ip_int_brief_headers,int_brief_data)
+body = body + "<h2>OSPF Neighborships</h2>"
+body = html_build_table(body,ospf_headers,ospf_data)
+body = body + "<h2>Show Version Data</h2>"
+body = html_build_table(body,show_ver_headers,ver_data)
+body = body + "<h2>Subnets Data</h2>"
+body = html_build_table(body,subnet_data_headers,subnet_data)
+body = body + "<h2>Running Config</h2>"
+body = body +'<pre>'
+body = body + running_config
+body = body +'</pre>'
+
+
+
+
+
+
+
+body = body + """</table></body>
+</html>
+"""
+output_doc = 'output.html'
+
+to_doc_w(output_doc,body)
 

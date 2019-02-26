@@ -27,8 +27,9 @@ from pprint import pprint
 
 #Next we call the function below
 #build_db(db_name,tables_columns)
-
-db_location = "localhost"
+socket.gethostbyname('test-mysql')
+#db_location = socket.gethostbyname('test-mysql')
+db_location = '192.168.0.183'
 db_user = 'root'
 db_password = 'password'
 perm_db = 'network_data_db'
