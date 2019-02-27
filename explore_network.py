@@ -20,8 +20,7 @@ def get_username_password():
 
 def deal_with_cdp_data(cdp_data, hostname, table_dics):
     #No phones at all
-    if "cca-" in cdp_data['deviceId']:
-        return
+   
     if "SEP" in cdp_data['deviceId']:
         return
     #Don't SSH to Access-points
