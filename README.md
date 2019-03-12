@@ -46,6 +46,9 @@ Run mysql container on server
 docker run --detach --name=test-mysql --env="MYSQL_ROOT_PASSWORD=password" --publish 3306:3306 mysql
 
 Connect to server from linux and create the DB
+
 mysql -u root -p -h 192.168.0.183
+
 create database network_data_db;
+
 create database temp_db;
