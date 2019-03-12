@@ -1,4 +1,6 @@
 Demo: https://www.youtube.com/watch?v=koJc_LmFpAI&feature=youtu.be
+
+This program will run though your Cisco gear, run a bunch of commands on the IP addresses in IPs.txt, and put data from those commands into a database.  It will also find other devices in your network to pull data from and stick into the database, and repeat till it runs out of devices to hit.
 	
 You will need the textfsm files from https://github.com/networktocode/ntc-templates and put the ntc-templates-master folder in the same folder as everything else.
 
