@@ -1,8 +1,8 @@
 	Demo: https://www.youtube.com/watch?v=koJc_LmFpAI&feature=youtu.be
 	
-	You will need the textfsm files from https://github.com/networktocode/ntc-templates and put the ntc-templates-master folder in the same folder as everything else.
+You will need the textfsm files from https://github.com/networktocode/ntc-templates and put the ntc-templates-master folder in the same folder as everything else.
 	
-	When I do this  "//d/network_crawler/network_to_db:/network_crawler"  I am just mapping my d:/network_crawler/network_to_db to the linux /network_crawler.  All my files are in d:/network_crawler/network_to_db
+When I do this  "//d/network_crawler/network_to_db:/network_crawler"  I am just mapping my d:/network_crawler/network_to_db to the linux /network_crawler.  All my files are in d:/network_crawler/network_to_db
 	
 	To update the database location/name go into db_work and update there: 
 		db_location is the MySQL server
@@ -12,9 +12,9 @@
 		temp_db is the temp database
 	
 	
-	To update the network username/password go into explore_network.py and edit the get_username_password function
+To update the network username/password go into explore_network.py and edit the get_username_password function
 	
-	All the examples assume your using a windows docker build and have your files in d:/network_crawler/network_to_db
+All the examples assume your using a windows docker build and have your files in d:/network_crawler/network_to_db
 	
 	
 	From main docker:
