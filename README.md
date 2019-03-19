@@ -51,3 +51,4 @@ When I do this  "//d/network_crawler/network_to_db:/network_crawler"  I am just 
 	mysql -u root -p -h 192.168.0.183
 	create database network_data_db;
 	create database temp_db;
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/GoreNetwork/Network-to-Database)
